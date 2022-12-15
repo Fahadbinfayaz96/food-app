@@ -127,188 +127,203 @@ class recommendationListState extends State<recommendationList> {
                               fit: BoxFit.fill,
                             )), //images
                       ),
-                      Stack(
-                        children: [
-                          Container(
-                            height: 150,
-                            width: 180,
-                            padding: EdgeInsets.only(
-                              right: 20,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8, right: 60, bottom: 6),
-                                  child: SizedBox(
-                                      width: 50,
-                                      height: 17,
-                                      child: Image.asset(
-                                          "assets/images/rating.png")),
-                                ),
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 3, right: 4),
-                                      child: Text(
-                                        recomData[index]
-                                            .ProductName
-                                            .toString(), //items
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 7,
-                                      child: Icon(
-                                        MyIcons.veg,
-                                        color: Colors.red,
-                                        size: 20,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(
-                                height: 40,
-                                width: 150,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 6),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        recomData[index]
-                                            .description
-                                            .toString(), //Description
-                                        style: TextStyle(fontSize: 11),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Container(
+                              height: 150,
+                              width: 180,
+                              padding: EdgeInsets.only(
+                                right: 20,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 6),
-                                child: SizedBox(
-                                  width: 160,
-                                  height: 25,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        Icons.timer,
-                                        size: 15,
-                                      ),
-                                      Text(
-                                        "${recomData[index].time.toString()} min", // time
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 18),
-                                        child: Text(
-                                          "Rating : ",
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                      ),
-                                      Text(
-                                        recomData[index]
-                                            .rating
-                                            .toString(), //rating
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400),
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        size: 15,
-                                        color: Color.fromARGB(255, 255, 230, 1),
-                                      ),
-                                    ],
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8, right: 60, bottom: 6),
+                                    child: SizedBox(
+                                        width: 50,
+                                        height: 17,
+                                        child: Image.asset(
+                                            "assets/images/rating.png")),
                                   ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 190),
-                                child: Container(
-                                  width: 100,
-                                  height: 120,
-                                  child: Column(
+                                  Row(
                                     children: [
                                       Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 35, bottom: 19.0),
+                                            left: 3, right: 4),
                                         child: Text(
-                                          "\$" +
-                                              " " +
-                                              recomData[index]
-                                                  .rate
-                                                  .toString(), //Price
+                                          recomData[index]
+                                              .ProductName
+                                              .toString(), //items
                                           style: TextStyle(
-                                              fontSize: 15,
+                                              fontSize: 18,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
-                                      Padding(
-                                          padding: const EdgeInsets.only(
-                                            top: 9,
+                                      SizedBox(
+                                        width: 7,
+                                        child: Icon(
+                                          MyIcons.veg,
+                                          color: Colors.red,
+                                          size: 20,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(
+                                  height: 40,
+                                  width: 150,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 6),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          recomData[index]
+                                              .description
+                                              .toString(), //Description
+                                          style: TextStyle(fontSize: 11),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 6),
+                                  child: SizedBox(
+                                    width: 160,
+                                    height: 25,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Icon(
+                                          Icons.timer,
+                                          size: 15,
+                                        ),
+                                        Text(
+                                          "${recomData[index].time.toString()} min", // time
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 18),
+                                          child: Text(
+                                            "Rating : ",
+                                            style: TextStyle(fontSize: 12),
                                           ),
-                                          child: Card(
-                                            elevation: 8,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
+                                        ),
+                                        Text(
+                                          recomData[index]
+                                              .rating
+                                              .toString(), //rating
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w400),
+                                        ),
+                                        Icon(
+                                          Icons.star,
+                                          size: 15,
+                                          color:
+                                              Color.fromARGB(255, 255, 230, 1),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    alignment: Alignment.centerRight,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 35, bottom: 19.0),
+                                          child: Text(
+                                            "\$" +
+                                                " " +
+                                                recomData[index]
+                                                    .rate
+                                                    .toString(), //Price
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Padding(
+                                            padding: const EdgeInsets.only(
+                                              top: 9,
                                             ),
-                                            shadowColor: Color.fromARGB(
-                                                255, 255, 115, 0),
-                                            child: InkWell(
-                                              onTap: (() {}),
-                                              child: Container(
-                                                height: 30,
-                                                width: 85,
-                                                decoration: BoxDecoration(
-                                                  color: Colors.orange,
-                                                  border: Border.all(
-                                                      color: Colors.orange),
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                ),
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 7, top: 6),
-                                                  child: Text(
-                                                    "Add to Cart",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 12),
+                                            child: Card(
+                                              elevation: 8,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                              ),
+                                              shadowColor: Color.fromARGB(
+                                                  255, 255, 115, 0),
+                                              child: InkWell(
+                                                onTap: () {
+                                                  carrt.addItem(
+                                                    CartItem(
+                                                      id: recomData[index].id,
+                                                      title: recomData[index]
+                                                          .ProductName,
+                                                      image: recomData[index]
+                                                          .image,
+                                                      price:
+                                                          recomData[index].rate,
+                                                    ),
+                                                  );
+                                                },
+                                                child: Container(
+                                                  height: 30,
+                                                  width: 85,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.orange,
+                                                    border: Border.all(
+                                                        color: Colors.orange),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                  ),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 7, top: 6),
+                                                    child: Text(
+                                                      "Add to Cart",
+                                                      style: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 12),
+                                                    ),
                                                   ),
                                                 ),
                                               ),
-                                            ),
-                                          ))
-                                    ],
+                                            ))
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -328,16 +343,6 @@ class recommendationListState extends State<recommendationList> {
           FloatingNavbarItem(
             customWidget: InkWell(
               onTap: () {
-                carrt.addItem(
-                    recomData.first.id.toString(),
-                    recomData.first.ProductName.toString(),
-                    recomData.first.image.toString(),
-                    1,
-                    recomData.first.rate,
-                    recomData.first.rate,
-                    0.7,
-                    recomData.first.rate,
-                    recomData.first.rate);
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => customerCart()));
               },
@@ -368,14 +373,12 @@ class recommendationListState extends State<recommendationList> {
             ),
           ),
           FloatingNavbarItem(
-              customWidget: Consumer<Cart>(
-                  builder: (BuildContext context, value, Widget? ch) => Badge(
-                        child: IconButton(
-                          icon: Icon(Icons.circle),
-                          onPressed: () {},
-                        ),
-                        value: value.itemCount.toString(),
-                      ))),
+            customWidget: Consumer<Cart>(
+              builder: (BuildContext context, value, Widget? ch) => Text(
+                value.itemCount.toString(),
+              ),
+            ),
+          ),
         ],
         // onTap: (int val) {},
       ),

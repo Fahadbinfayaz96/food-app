@@ -10,12 +10,13 @@ class RecommendationModel {
   final int time;
   final double rate;
   final double rating;
-  RecommendationModel(
-      {required this.id,
-      required this.image,
-      required this.ProductName,
-      required this.description,
-      required this.time,
-      required this.rating,
-      required this.rate}) {}
+  RecommendationModel({
+    required this.id,
+    required this.image,
+    required this.ProductName,
+    required this.description,
+    required this.time,
+    required this.rating,
+    required this.rate,
+  });
 }
