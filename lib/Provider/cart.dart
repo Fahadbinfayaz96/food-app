@@ -27,7 +27,7 @@ class Cart with ChangeNotifier {
   }
 
   void addItem(CartItem cartItem) {
-    if (!_items.contains(cartItem)) {
+    if (!_items.any((element) => element.id == cartItem.id)) {
       _items.add(cartItem);
       log(_items.length.toString());
       notifyListeners();
