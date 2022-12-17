@@ -12,7 +12,7 @@ class products with ChangeNotifier {
       ProductName: 'Chicken tikka',
       description: 'with extra spices',
       time: 30,
-      rate: 3.01,
+      rate: 2.00,
       rating: 5.0,
     ),
     RecommendationModel(
@@ -22,9 +22,19 @@ class products with ChangeNotifier {
       ProductName: 'Chicken biryani',
       description: 'extra spicy',
       time: 20,
-      rate: 2.50,
+      rate: 1.00,
       rating: 4.5,
-    )
+    ),
+    RecommendationModel(
+      id: 'i3',
+      image:
+          'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
+      ProductName: 'Mutton biryani',
+      description: 'extra spicy',
+      time: 35,
+      rate: 3.00,
+      rating: 4.5,
+    ),
   ];
 
   List<RecommendationModel> get items {

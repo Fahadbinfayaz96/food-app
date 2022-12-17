@@ -6,7 +6,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:number_inc_dec/number_inc_dec.dart';
 import 'package:provider/provider.dart';
 import 'Provider/cart.dart';
 import 'icons.dart';
@@ -17,9 +16,6 @@ class customerCart extends StatefulWidget {
 }
 
 class customerCartState extends State<customerCart> {
-  var arrItems = [
-    'Chicken Tikka ',
-  ];
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<Cart>(context);
@@ -111,14 +107,14 @@ class customerCartState extends State<customerCart> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              "\$7.00",
+                              "\$ ${cartProvider.totalamout}",
                             ),
                             Text(
-                              "\$0.07",
+                              "\$ ${cartProvider.itemTax.roundToDouble()}",
                             ),
                             Divider(),
                             Text(
-                              "\$7.07",
+                              "\$${cartProvider.toPay}",
                             ),
                           ],
                         )
@@ -147,15 +143,16 @@ class customerCartState extends State<customerCart> {
 }
 
 class CartItemWidget extends StatelessWidget {
-  const CartItemWidget({
+  CartItemWidget({
     Key? key,
     required this.cartItem,
   }) : super(key: key);
 
-  final CartItem cartItem;
+  CartItem cartItem;
 
   @override
   Widget build(BuildContext context) {
+    final removeItem = Provider.of<Cart>(context);
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Slidable(
@@ -167,7 +164,7 @@ class CartItemWidget extends StatelessWidget {
               bottomLeft: Radius.circular(25),
             ),
             backgroundColor: Colors.red.withOpacity(0.3),
-            onPressed: ((context) => {}),
+            onPressed: ((context) => {removeItem.removeItem(cartItem)}),
           )
         ]),
         child: Container(
@@ -225,46 +222,8 @@ class CartItemWidget extends StatelessWidget {
                           fontSize: 12,
                         ),
                       ),
-                      SizedBox(
-                        width: 80,
-                        height: 30,
-                        child: NumberInputWithIncrementDecrement(
-                          controller: TextEditingController(),
-                          initialValue: 1,
-                          widgetContainerDecoration: BoxDecoration(
-                            color: Colors.orange,
-                            borderRadius: BorderRadius.circular(25),
-                            border: Border.all(style: BorderStyle.none),
-                          ),
-                          style: TextStyle(
-                              fontFamily: 'Metrolpolis',
-                              fontSize: 17,
-                              color: Colors.white),
-                          numberFieldDecoration: InputDecoration(
-                            disabledBorder: InputBorder.none,
-                            isDense: true,
-                            enabled: false,
-                          ),
-                          incIconDecoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            border: Border.all(style: BorderStyle.none),
-                          ),
-                          incIconColor: Colors.white,
-                          incIconSize: 17,
-                          decIconDecoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            border: Border.all(
-                              style: BorderStyle.none,
-                            ),
-                          ),
-                          decIconColor: Colors.white,
-                          decIconSize: 17,
-                          separateIcons: true,
-                          buttonArrangement: ButtonArrangement.incRightDecLeft,
-                          incIcon: FontAwesomeIcons.plus,
-                          decIcon: FontAwesomeIcons.minus,
-                        ),
-                      )
+                      ProductQuantity(
+                          removeItem: removeItem, cartItem: cartItem),
                     ],
                   ),
                 ),
@@ -284,7 +243,7 @@ class CartItemWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "T: \$2",
+                        "T: \$ ${removeItem.totalSelectedQuantityPrice}",
                         style:
                             TextStyle(fontFamily: "Metrolpolis", fontSize: 14),
                       ),
@@ -295,6 +254,68 @@ class CartItemWidget extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class ProductQuantity extends StatefulWidget {
+  const ProductQuantity({
+    Key? key,
+    required this.removeItem,
+    required this.cartItem,
+  }) : super(key: key);
+
+  final Cart removeItem;
+  final CartItem cartItem;
+
+  @override
+  State<ProductQuantity> createState() => _ProductQuantityState();
+}
+
+class _ProductQuantityState extends State<ProductQuantity> {
+  @override
+  Widget build(BuildContext context) {
+    widget.cartItem;
+    widget.removeItem;
+    return Container(
+      height: 30,
+      width: 70,
+      decoration: BoxDecoration(
+          color: Colors.orange, borderRadius: BorderRadius.circular(15)),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          InkWell(
+            onTap: () {
+              setState(() {
+                if (widget.cartItem.initail != 1) {
+                  widget.removeItem.decItem;
+                }
+              });
+            },
+            child: Icon(
+              FontAwesomeIcons.minus,
+              color: Colors.white,
+              size: 15,
+            ),
+          ),
+          Text(
+            "${widget.cartItem.initail}",
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+          InkWell(
+            onTap: () {
+              widget.removeItem.incItem;
+              setState(() {});
+            },
+            child: Icon(
+              FontAwesomeIcons.plus,
+              color: Colors.white,
+              size: 15,
+            ),
+          )
+        ],
       ),
     );
   }

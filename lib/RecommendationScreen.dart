@@ -1,20 +1,13 @@
-// ignore_for_file: prefer_const_constructors, camel_case_types, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element, no_leading_underscores_for_local_identifiers, unnecessary_this, sized_box_for_whitespace, dead_code, prefer_adjacent_string_concatenation, void_checks, unnecessary_string_interpolations, empty_constructor_bodies, must_be_immutable, unused_label
-
-import 'dart:math';
+// ignore_for_file: prefer_const_constructors, camel_case_types, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, unused_element, no_leading_underscores_for_local_identifiers, unnecessary_this, sized_box_for_whitespace, dead_code, prefer_adjacent_string_concatenation, void_checks, unnecessary_string_interpolations, empty_constructor_bodies, must_be_immutable, unused_label, unrelated_type_equality_checks
 
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_big_plate/CustomerCartScreen.dart';
 import 'package:my_big_plate/DetailedProductScreen.dart';
 import 'package:my_big_plate/Provider/Porducts.dart';
 import 'package:my_big_plate/Provider/cart.dart';
 import 'package:provider/provider.dart';
-
-import '../Models/Recommendation_Model.dart';
-import '203 badge.dart';
-import 'Db/dummy_data.dart';
 import 'icons.dart';
 
 class recommondationPage extends StatefulWidget {
@@ -24,16 +17,6 @@ class recommondationPage extends StatefulWidget {
 
 class recommondationPageState extends State<recommondationPage> {
   bool isSearching = false;
-
-/*   List<String> images = [
-    'https://image.shutterstock.com/image-photo/mango-isolated-on-white-background-600w-610892249.jpg',
-    'https://image.shutterstock.com/image-photo/orange-fruit-slices-leaves-isolated-600w-1386912362.jpg',
-    'https://image.shutterstock.com/image-photo/green-grape-leaves-isolated-on-600w-533487490.jpg',
-    'https://media.istockphoto.com/photos/banana-picture-id1184345169?s=612x612',
-    'https://media.istockphoto.com/photos/cherry-trio-with-stem-and-leaf-picture-id157428769?s=612x612',
-    'https://media.istockphoto.com/photos/single-whole-peach-fruit-with-leaf-and-slice-isolated-on-white-picture-id1151868959?s=612x612',
-    'https://media.istockphoto.com/photos/fruit-background-picture-id529664572?s=612x612',
-  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -281,14 +264,16 @@ class recommendationListState extends State<recommendationList> {
                                                 onTap: () {
                                                   carrt.addItem(
                                                     CartItem(
-                                                      id: recomData[index].id,
-                                                      title: recomData[index]
-                                                          .ProductName,
-                                                      image: recomData[index]
-                                                          .image,
-                                                      price:
-                                                          recomData[index].rate,
-                                                    ),
+                                                        id: recomData[index].id,
+                                                        title: recomData[index]
+                                                            .ProductName,
+                                                        image: recomData[index]
+                                                            .image,
+                                                        price: recomData[index]
+                                                            .rate,
+                                                        quantity: 1,
+                                                        tax: 0.12,
+                                                        initail: 1),
                                                   );
                                                 },
                                                 child: Container(
