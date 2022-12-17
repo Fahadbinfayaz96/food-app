@@ -157,7 +157,7 @@ class CartItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final removeItem = Provider.of<Cart>(context);
+    final cartProvider = Provider.of<Cart>(context);
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: Slidable(
@@ -169,7 +169,7 @@ class CartItemWidget extends StatelessWidget {
               bottomLeft: Radius.circular(25),
             ),
             backgroundColor: Colors.red.withOpacity(0.3),
-            onPressed: ((context) => {removeItem.removeItem(cartItem)}),
+            onPressed: ((context) => {cartProvider.removeItem(cartItem)}),
           )
         ]),
         child: Container(
@@ -250,7 +250,7 @@ class CartItemWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "T: \$ ${removeItem.totalSelectedQuantityPrice}",
+                        "T: \$ ${cartProvider.items[index].quantity * cartProvider.items[index].price}",
                         style:
                             TextStyle(fontFamily: "Metrolpolis", fontSize: 14),
                       ),
