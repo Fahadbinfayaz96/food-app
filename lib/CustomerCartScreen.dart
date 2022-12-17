@@ -21,124 +21,124 @@ class customerCartState extends State<customerCart> {
     final cartProvider = Provider.of<Cart>(context);
     log(cartProvider.itemCount.toString());
     return Scaffold(
-        appBar: PreferredSize(
-            preferredSize: Size.fromHeight(80),
-            child: AppBar(
-                title: Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Text(
-                    "Cart",
-                    style: TextStyle(fontFamily: 'Metrolpolis', fontSize: 27),
+      appBar: PreferredSize(
+          preferredSize: Size.fromHeight(80),
+          child: AppBar(
+              title: Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Text(
+                  "Cart",
+                  style: TextStyle(fontFamily: 'Metrolpolis', fontSize: 27),
+                ),
+              ),
+              backgroundColor: Colors.orange,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(25),
+                    bottomRight: Radius.circular(25)),
+              ),
+              centerTitle: true,
+              actions: [
+                SizedBox(
+                  width: 170,
+                  height: 50,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 150, top: 14),
+                    child: Icon(
+                      FontAwesomeIcons.cartShopping,
+                    ),
                   ),
                 ),
-                backgroundColor: Colors.orange,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(25),
-                      bottomRight: Radius.circular(25)),
-                ),
-                centerTitle: true,
-                actions: [
-                  SizedBox(
-                    width: 170,
-                    height: 50,
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 150, top: 14),
-                      child: Icon(
-                        FontAwesomeIcons.cartShopping,
+              ])),
+      body: Column(
+        children: [
+          Expanded(
+            child: SizedBox(
+              child: ListView.builder(
+                itemCount: cartProvider.items.length,
+                itemBuilder: (context, index) {
+                  return CartItemWidget(cartItem: cartProvider.items[index]);
+                },
+              ),
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25), topRight: Radius.circular(25)),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.shade300, blurRadius: 4, spreadRadius: 3)
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Item Total",
+                            style: TextStyle(fontWeight: FontWeight.w300),
+                          ),
+                          Text(
+                            "Tax",
+                            style: TextStyle(fontWeight: FontWeight.w300),
+                          ),
+                          Divider(),
+                          Text(
+                            "To Pay",
+                            style: TextStyle(fontFamily: 'Metrolpolis'),
+                          )
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            "\$ ${cartProvider.totalamout}",
+                          ),
+                          Text(
+                            "\$ ${cartProvider.itemTax.roundToDouble()}",
+                          ),
+                          Divider(),
+                          Text(
+                            "\$${cartProvider.toPay}",
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: Text("Order Now "),
+                    style: ElevatedButton.styleFrom(
+                      textStyle:
+                          TextStyle(fontSize: 12, fontFamily: 'Metrolpolis'),
+                      backgroundColor: Colors.orange,
+                      shadowColor: Color.fromARGB(255, 255, 158, 12),
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                        side: BorderSide(color: Colors.orange),
                       ),
                     ),
                   ),
-                ])),
-        body: Column(
-          children: [
-            Expanded(
-              child: SizedBox(
-                child: ListView.builder(
-                  itemCount: cartProvider.items.length,
-                  itemBuilder: (context, index) {
-                    return CartItemWidget(cartItem: cartProvider.items[index]);
-                  },
-                ),
-              ),
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25),
-                    topRight: Radius.circular(25)),
-                boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey.shade300,
-                      blurRadius: 4,
-                      spreadRadius: 3)
                 ],
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Item Total",
-                              style: TextStyle(fontWeight: FontWeight.w300),
-                            ),
-                            Text(
-                              "Tax",
-                              style: TextStyle(fontWeight: FontWeight.w300),
-                            ),
-                            Divider(),
-                            Text(
-                              "To Pay",
-                              style: TextStyle(fontFamily: 'Metrolpolis'),
-                            )
-                          ],
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Text(
-                              "\$ ${cartProvider.totalamout}",
-                            ),
-                            Text(
-                              "\$ ${cartProvider.itemTax.roundToDouble()}",
-                            ),
-                            Divider(),
-                            Text(
-                              "\$${cartProvider.toPay}",
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text("Order Now "),
-                      style: ElevatedButton.styleFrom(
-                          textStyle: TextStyle(
-                              fontSize: 12, fontFamily: 'Metrolpolis'),
-                          backgroundColor: Colors.orange,
-                          shadowColor: Color.fromARGB(255, 255, 158, 12),
-                          elevation: 6,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                              side: BorderSide(color: Colors.orange))),
-                    )
-                  ],
-                ),
-              ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
 
