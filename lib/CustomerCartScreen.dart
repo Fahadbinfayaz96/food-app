@@ -57,7 +57,10 @@ class customerCartState extends State<customerCart> {
               child: ListView.builder(
                 itemCount: cartProvider.items.length,
                 itemBuilder: (context, index) {
-                  return CartItemWidget(cartItem: cartProvider.items[index]);
+                  return CartItemWidget(
+                    cartItem: cartProvider.items[index],
+                    index: index,
+                  );
                 },
               ),
             ),
@@ -146,9 +149,11 @@ class CartItemWidget extends StatelessWidget {
   CartItemWidget({
     Key? key,
     required this.cartItem,
+    required this.index,
   }) : super(key: key);
 
   CartItem cartItem;
+  int index;
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +228,9 @@ class CartItemWidget extends StatelessWidget {
                         ),
                       ),
                       ProductQuantity(
-                          removeItem: removeItem, cartItem: cartItem),
+                        cartItem: cartItem,
+                        index: index,
+                      ),
                     ],
                   ),
                 ),
@@ -262,12 +269,12 @@ class CartItemWidget extends StatelessWidget {
 class ProductQuantity extends StatefulWidget {
   const ProductQuantity({
     Key? key,
-    required this.removeItem,
     required this.cartItem,
+    required this.index,
   }) : super(key: key);
 
-  final Cart removeItem;
   final CartItem cartItem;
+  final int index;
 
   @override
   State<ProductQuantity> createState() => _ProductQuantityState();
@@ -276,8 +283,7 @@ class ProductQuantity extends StatefulWidget {
 class _ProductQuantityState extends State<ProductQuantity> {
   @override
   Widget build(BuildContext context) {
-    widget.cartItem;
-    widget.removeItem;
+    final cartProvider = Provider.of<Cart>(context);
     return Container(
       height: 30,
       width: 70,
@@ -288,11 +294,9 @@ class _ProductQuantityState extends State<ProductQuantity> {
         children: [
           InkWell(
             onTap: () {
-              setState(() {
-                if (widget.cartItem.initail != 1) {
-                  widget.removeItem.decItem;
-                }
-              });
+              if (cartProvider.items[widget.index].quantity > 0) {
+                cartProvider.decreaseQuantity(widget.cartItem);
+              }
             },
             child: Icon(
               FontAwesomeIcons.minus,
@@ -301,20 +305,19 @@ class _ProductQuantityState extends State<ProductQuantity> {
             ),
           ),
           Text(
-            "${widget.cartItem.initail}",
+            cartProvider.items[widget.index].quantity.toStringAsFixed(0),
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
           InkWell(
             onTap: () {
-              widget.removeItem.incItem;
-              setState(() {});
+              cartProvider.increaseQuantity(widget.cartItem);
             },
             child: Icon(
               FontAwesomeIcons.plus,
               color: Colors.white,
               size: 15,
             ),
-          )
+          ),
         ],
       ),
     );
