@@ -24,7 +24,10 @@ class recommondationPageState extends State<recommondationPage> {
         appBar: AppBar(
           backgroundColor: Colors.orange,
           title: !isSearching
-              ? Text("Recommendation")
+              ? Text(
+                  "Recommendation",
+                  style: TextStyle(fontFamily: 'Metrolpolis'),
+                )
               : TextField(
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
@@ -141,8 +144,8 @@ class recommendationListState extends State<recommendationList> {
                                               .ProductName
                                               .toString(), //items
                                           style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
+                                              fontSize: 17,
+                                              fontFamily: 'Metrolpolis'),
                                         ),
                                       ),
                                       SizedBox(
@@ -150,7 +153,7 @@ class recommendationListState extends State<recommendationList> {
                                         child: Icon(
                                           MyIcons.veg,
                                           color: Colors.red,
-                                          size: 20,
+                                          size: 15,
                                         ),
                                       )
                                     ],
@@ -164,20 +167,19 @@ class recommendationListState extends State<recommendationList> {
                                 SizedBox(
                                   height: 40,
                                   width: 150,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 6),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          recomData[index]
-                                              .description
-                                              .toString(), //Description
-                                          style: TextStyle(fontSize: 11),
-                                        )
-                                      ],
-                                    ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        recomData[index]
+                                            .description
+                                            .toString(), //Description
+                                        style: TextStyle(
+                                            fontSize: 11,
+                                            fontFamily: 'Metrolpolis'),
+                                      )
+                                    ],
                                   ),
                                 ),
                                 Padding(
@@ -197,14 +199,16 @@ class recommendationListState extends State<recommendationList> {
                                           "${recomData[index].time.toString()} min", // time
                                           style: TextStyle(
                                               fontSize: 12,
-                                              fontWeight: FontWeight.w400),
+                                              fontFamily: 'Metrolpolis'),
                                         ),
                                         Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 18),
+                                              const EdgeInsets.only(left: 10),
                                           child: Text(
                                             "Rating : ",
-                                            style: TextStyle(fontSize: 12),
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontFamily: 'Metrolpolis'),
                                           ),
                                         ),
                                         Text(
@@ -213,7 +217,7 @@ class recommendationListState extends State<recommendationList> {
                                               .toString(), //rating
                                           style: TextStyle(
                                               fontSize: 12,
-                                              fontWeight: FontWeight.w400),
+                                              fontFamily: 'Metrolpolis'),
                                         ),
                                         Icon(
                                           Icons.star,
@@ -245,13 +249,15 @@ class recommendationListState extends State<recommendationList> {
                                                     .toString(), //Price
                                             style: TextStyle(
                                                 fontSize: 15,
-                                                fontWeight: FontWeight.bold),
+                                                fontFamily: 'Metrolpolis'),
                                           ),
                                         ),
+                                     
                                         Padding(
                                             padding: const EdgeInsets.only(
                                               top: 9,
-                                            ),
+                                            ),  
+                                            
                                             child: Card(
                                               elevation: 8,
                                               shape: RoundedRectangleBorder(
@@ -262,18 +268,20 @@ class recommendationListState extends State<recommendationList> {
                                                   255, 255, 115, 0),
                                               child: InkWell(
                                                 onTap: () {
+                                                  
                                                   carrt.addItem(
                                                     CartItem(
-                                                        id: recomData[index].id,
-                                                        title: recomData[index]
-                                                            .ProductName,
-                                                        image: recomData[index]
-                                                            .image,
-                                                        price: recomData[index]
-                                                            .rate,
-                                                        quantity: 1,
-                                                        tax: 0.12,
-                                                        initail: 1),
+                                                      id: recomData[index].id,
+                                                      title: recomData[index]
+                                                          .ProductName,
+                                                      image: recomData[index]
+                                                          .image,
+                                                      price:
+                                                          recomData[index].rate,
+                                                      quantity: 1,
+                                                      tax: 0.12,
+                                                      
+                                                    ),
                                                   );
                                                 },
                                                 child: Container(
@@ -290,12 +298,14 @@ class recommendationListState extends State<recommendationList> {
                                                   child: Padding(
                                                     padding:
                                                         const EdgeInsets.only(
-                                                            left: 7, top: 6),
+                                                            left: 5, top: 8),
                                                     child: Text(
                                                       "Add to Cart",
                                                       style: TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 12),
+                                                          fontSize: 12,
+                                                          fontFamily:
+                                                              'Metrolpolis'),
                                                     ),
                                                   ),
                                                 ),
@@ -344,11 +354,12 @@ class recommendationListState extends State<recommendationList> {
                       children: [
                         Text(
                           'Veiw Cart',
-                          style: TextStyle(fontSize: 17),
+                          style: TextStyle(
+                              fontSize: 16, fontFamily: 'Metrolpolis'),
                         ),
                         Icon(
                           FontAwesomeIcons.cartShopping,
-                          size: 20,
+                          size: 18,
                         ),
                       ],
                     ),
@@ -360,7 +371,9 @@ class recommendationListState extends State<recommendationList> {
           FloatingNavbarItem(
             customWidget: Consumer<Cart>(
               builder: (BuildContext context, value, Widget? ch) => Text(
-                value.itemCount.toString(),
+                " ${value.itemCount.toString()} Items",
+                style: TextStyle(fontFamily: 'Metrolpolis'),
+                textAlign: TextAlign.right,
               ),
             ),
           ),

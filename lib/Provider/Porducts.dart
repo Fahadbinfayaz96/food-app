@@ -45,4 +45,6 @@ class products with ChangeNotifier {
     // _items.add();
     notifyListeners();
   }
+
+  map(Null Function(dynamic e) param0) {}
 }

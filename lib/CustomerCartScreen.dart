@@ -19,7 +19,7 @@ class customerCartState extends State<customerCart> {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<Cart>(context);
-    log(cartProvider.itemCount.toString());
+
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(80),
@@ -294,7 +294,7 @@ class _ProductQuantityState extends State<ProductQuantity> {
         children: [
           InkWell(
             onTap: () {
-              if (cartProvider.items[widget.index].quantity > 0) {
+              if (cartProvider.items[widget.index].quantity > 1) {
                 cartProvider.decreaseQuantity(widget.cartItem);
               }
             },

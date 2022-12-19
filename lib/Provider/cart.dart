@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable, avoid_print, curly_braces_in_flow_control_structures
+// ignore_for_file: unused_local_variable, avoid_print, curly_braces_in_flow_control_structures, avoid_function_literals_in_foreach_calls
 
 import 'dart:developer';
 
@@ -11,7 +11,6 @@ class CartItem {
   final double price;
   final double tax;
   double quantity;
-  int initail;
 
   CartItem({
     required this.id,
@@ -20,7 +19,6 @@ class CartItem {
     required this.price,
     required this.quantity,
     required this.tax,
-    required this.initail,
   });
 }
 
@@ -35,17 +33,11 @@ class Cart with ChangeNotifier {
     return _items.length;
   }
 
-  double get totalSelectedQuantityPrice {
-    var tcp = 0.0;
-    tcp += _items.first.price * _items.first.initail;
-    return tcp;
-  }
-
   double get totalamout {
     var total = 0.0;
     if (_items.isNotEmpty) {
       for (var cartItem in _items) {
-        total += (totalSelectedQuantityPrice * cartItem.quantity);
+        total += (cartItem.price * cartItem.quantity);
       }
     }
     return total;
@@ -71,6 +63,7 @@ class Cart with ChangeNotifier {
 
   void increaseQuantity(CartItem cartItem) {
     cartItem.quantity++;
+
     notifyListeners();
   }
 

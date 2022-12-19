@@ -5,6 +5,7 @@ import 'package:my_big_plate/DetailedProductScreen.dart';
 import 'package:my_big_plate/Provider/Porducts.dart';
 import 'package:my_big_plate/Provider/cart.dart';
 import 'package:my_big_plate/RecommendationScreen.dart';
+import 'package:my_big_plate/WaiterOrderScreen.dart';
 import 'package:provider/provider.dart';
 import 'package:my_big_plate/DetailedProductScreen.dart';
 
@@ -18,22 +19,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => products(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => Cart(),
-        )
-      ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: recommondationPage(),
-      ),
-    );
+        providers: [
+          ChangeNotifierProvider(
+            create: (context) => products(),
+          ),
+          ChangeNotifierProvider(
+            create: (context) => Cart(),
+          )
+        ],
+        child: MaterialApp(
+            title: 'Flutter Demo',
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: recommondationPage()
+            ));
   }
 }

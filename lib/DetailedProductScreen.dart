@@ -1,9 +1,13 @@
-// ignore_for_file: camel_case_types, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_typing_uninitialized_variables, must_be_immutable, prefer_interpolation_to_compose_strings
+// ignore_for_file: camel_case_types, use_key_in_widget_constructors, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, prefer_typing_uninitialized_variables, must_be_immutable, prefer_interpolation_to_compose_strings, non_constant_identifier_names
 
 import 'package:flutter/material.dart';
 import 'package:flutter_toggle_tab/flutter_toggle_tab.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_big_plate/Models/Recommendation_Model.dart';
+import 'package:my_big_plate/Provider/Porducts.dart';
+import 'package:my_big_plate/Provider/cart.dart';
+import 'package:my_big_plate/RecommendationScreen.dart';
+import 'package:provider/provider.dart';
 
 import 'icons.dart';
 
@@ -32,10 +36,6 @@ class detailProductState extends State<detailProduct> {
 
     return Scaffold(
       appBar: AppBar(
-        /* leading: Icon(
-          FontAwesomeIcons.arrowLeft,
-          color: Colors.black,
-        ),*/
         title: Text("Detailed Product"),
         backgroundColor: Color.fromARGB(255, 253, 252, 252),
         elevation: 0,
@@ -78,7 +78,7 @@ class detailProductState extends State<detailProduct> {
                         widget.recommendationModel.ProductName
                             .toString(), //name
                         style:
-                            TextStyle(fontFamily: 'Metrolpolis', fontSize: 20),
+                            TextStyle(fontFamily: 'Metrolpolis', fontSize: 18),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
@@ -95,7 +95,7 @@ class detailProductState extends State<detailProduct> {
                           .toString()), //rating
                       Icon(
                         Icons.star,
-                        size: 12,
+                        size: 16,
                         color: Color.fromARGB(255, 255, 238, 5),
                       ),
                       Padding(
@@ -153,9 +153,13 @@ class detailProductState extends State<detailProduct> {
                         Icons.timer,
                         size: 18,
                       ),
-                      Text(widget.recommendationModel.time.toString() +
-                          " " +
-                          "min") //time
+                      Text(
+                        widget.recommendationModel.time.toString() +
+                            " " +
+                            "min",
+                        style:
+                            TextStyle(fontFamily: 'Metrolpolis', fontSize: 16),
+                      ) //time
                     ],
                   )
                 ],
@@ -166,7 +170,7 @@ class detailProductState extends State<detailProduct> {
               width: screenSize * 1,
               child: Text(
                 "Description",
-                style: TextStyle(fontFamily: 'Metrolpolis', fontSize: 20),
+                style: TextStyle(fontFamily: 'Metrolpolis', fontSize: 18),
               ),
             ),
             Text(
